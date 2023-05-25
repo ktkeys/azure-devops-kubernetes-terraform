@@ -9,8 +9,7 @@ resources:
 - repo: self
 
 variables:
-  tag: 18
-  #$(Build.BuildId)'
+  tag: '$(Build.BuildId)'
 
 stages:
 - stage: Build
@@ -22,12 +21,12 @@ stages:
       vmImage: ubuntu-latest
     steps:
     - task: Docker@2
-      # inputs:
-      #   containerRegistry: 'ktkeys-docker-hubs'
-      #   repository: 'ktkeys/currency-exchange-devops'
-      #   command: 'buildAndPush'
-      #   Dockerfile: '**/Dockerfile'
-      #   tags: '$(tag)'
+      inputs:
+        containerRegistry: 'ktkeys-docker-hubs'
+        repository: 'ktkeys/currency-exchange-devops'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+        tags: '$(tag)'
 
     - task: CopyFiles@2
       inputs:
